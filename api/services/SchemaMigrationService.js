@@ -1,7 +1,4 @@
-'use strict'
-
 const _ = require('lodash')
-const Service = require('trails/service')
 
 /**
  * @module SchemaMigrationService
