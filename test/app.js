@@ -24,8 +24,8 @@ module.exports = _.defaultsDeep({
         require('../') // trailpack-mongoose
       ]
     },
-    database: {
-      stores: {
+    stores: {
+      connections: {
         teststore: {
           uri: 'mongodb://localhost:27017/test',
           options: {

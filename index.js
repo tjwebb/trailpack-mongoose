@@ -44,7 +44,6 @@ module.exports = class MongooseTrailpack extends DatastoreTrailpack {
     const stores = lib.Transformer.pickStores(this.app.config.get('stores.connections'))
     // iterating only through mongo stores
     this.connections = _.mapValues(stores, (_store, storeName) => {
-      console.log('adding connection', storeName)
       const store = _.merge({ }, _store)
       if (!_.isString(store.uri))
         throw new Error('Store have to contain "uri" option')
@@ -56,7 +55,6 @@ module.exports = class MongooseTrailpack extends DatastoreTrailpack {
       const models = _.pickBy(this.models, { connection: storeName })
 
       _.map(models, model => {
-        console.log('adding model to orm', model.globalId)
         const schema = new mongoose.Schema(model.schema, model.schemaOptions)
         // Bind statics & methods
         schema.statics = model.statics
