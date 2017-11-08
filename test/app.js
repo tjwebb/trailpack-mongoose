@@ -1,11 +1,8 @@
-'use strict'
-
-const _ = require('lodash')
 const smokesignals = require('smokesignals')
 const User = require('./model/User')
 const Role = require('./model/Role')
 
-module.exports = _.defaultsDeep({
+module.exports = Object.assign(smokesignals.FailsafeConfig, {
   pkg: {
     name: 'mongoose-trailpack-test'
   },
@@ -25,28 +22,25 @@ module.exports = _.defaultsDeep({
       ]
     },
     stores: {
-      connections: {
-        teststore: {
-          uri: 'mongodb://localhost:27017/test',
-          options: {
+      teststore: {
+        migrate: 'drop',
+        uri: 'mongodb://localhost:27017/test',
+        options: {
 
-          }
-        },
-        storeoverride: {
-          uri: 'mongodb://localhost:27017/test2',
-          options: {
-
-          }
-        },
-        notMongoStore: {
-          uri: 'postgres://localhost:5432/tests',
-          options: {}
         }
       },
-      models: {
-        defaultStore: 'teststore',
-        migrate: 'drop'
+      storeoverride: {
+        migrate: 'drop',
+        uri: 'mongodb://localhost:27017/test2',
+        options: {
+
+        }
+      },
+      notMongoStore: {
+        migrate: 'drop',
+        uri: 'postgres://localhost:5432/tests',
+        options: {}
       }
     }
   }
-}, smokesignals.FailsafeConfig)
+})

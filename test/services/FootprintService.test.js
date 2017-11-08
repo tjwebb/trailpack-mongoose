@@ -1,7 +1,4 @@
-'use strict'
-
 const assert = require('assert')
-const _ = require('lodash')
 
 describe('api.services.FootprintService', () => {
 
@@ -117,7 +114,7 @@ describe('api.services.FootprintService', () => {
           return FootprintService.destroy('Role', role.id)
         })
         .then(role => {
-          assert(_.isObject(role))
+          assert.equal(typeof role, 'object')
           assert.equal(role.name, 'destroytestid')
           return FootprintService.find('Role', { name: 'destroytestid' })
         })
@@ -174,7 +171,7 @@ describe('api.services.FootprintService', () => {
         .then((rec) => {
           assert(rec)
           assert.equal(rec.id, user.id)
-          assert(_.isArray(rec.roles))
+          assert(Array.isArray(rec.roles))
           assert.equal(rec.roles.length, 1)
           assert.equal(rec.roles[0], role.id)
         })
@@ -192,7 +189,7 @@ describe('api.services.FootprintService', () => {
         .then((rec) => {
           assert(rec)
           assert.equal(rec.id, user.id)
-          assert(_.isArray(rec.superRoles))
+          assert(Array.isArray(rec.superRoles))
           assert.equal(rec.superRoles.length, 1)
           assert.equal(rec.superRoles[0], role.id)
         })
@@ -232,7 +229,7 @@ describe('api.services.FootprintService', () => {
         .then((rec) => {
           assert(rec)
           assert.equal(rec.id, user.id)
-          assert(_.isArray(rec.roles))
+          assert(Array.isArray(rec.roles))
           // We have 1 record added in prev test
           // So need to look into last one
           assert.equal(rec.roles.length, 2)
@@ -269,7 +266,7 @@ describe('api.services.FootprintService', () => {
       return FootprintService
         .findAssociation('User', user._id, 'role') // eslint-disable-line
         .then((list) => {
-          assert(_.isArray(list))
+          assert(Array.isArray(list))
           assert.equal(list.length, 1)
           assert.equal(list[0]._id.toString(), role._id.toString()) // eslint-disable-line
         })

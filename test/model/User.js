@@ -1,4 +1,3 @@
-'use strict'
 const Model = require('trails/model')
 const Schema = require('mongoose').Schema
 
@@ -40,6 +39,7 @@ module.exports = class User extends Model {
 
   static config(app, Mongoose) {
     return {
+      store: 'teststore',
       schema: {
         timestamps: true,
         versionKey: false

@@ -1,6 +1,5 @@
 /* global describe, it */
 
-const _ = require('lodash')
 const assert = require('assert')
 
 describe('SchemaMigrationService', () => {
@@ -9,7 +8,7 @@ describe('SchemaMigrationService', () => {
   })
   describe('#create', () => {
     it('should create collections', () => {
-      return Promise.all(_.map(global.app.models, model => {
+      return Promise.all(Object.values(global.app.models).map(model => {
         return Promise.resolve()
       }))
     })

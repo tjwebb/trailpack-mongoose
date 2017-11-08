@@ -1,4 +1,3 @@
-'use strict'
 const Model = require('trails/model')
 const Schema = require('mongoose').Schema
 

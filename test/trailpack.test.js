@@ -1,5 +1,3 @@
-'use strict'
-
 const assert = require('assert')
 
 describe('Mongoose Trailpack', () => {
@@ -19,8 +17,8 @@ describe('Mongoose Trailpack', () => {
     })
     it('should load and transform connections', () => {
       assert(pack.connections)
-      assert(pack.connections.teststore)
-      assert(pack.connections.storeoverride)
+      assert(pack.connections.get('teststore'))
+      assert(pack.connections.get('storeoverride'))
     })
   })
 

@@ -1,5 +1,3 @@
-const _ = require('lodash')
-
 /**
  * @module SchemaMigrationService
  * @description Schema Migrations
@@ -13,9 +11,10 @@ module.exports = class SchemaMigrationService extends Service {
    */
   drop (connection) {
     return Promise.all(
-      _.map(connection.collections, collection => {
+      Object.values(connection.collections).map(collection => {
         return new Promise((resolve, reject) => {
-          collection.drop((err) => {
+          collection.drop(err => {
+            if (err) return reject()
             resolve()
           })
         })
@@ -27,5 +26,11 @@ module.exports = class SchemaMigrationService extends Service {
    */
   alter (connection) {
     throw new Error('trailpack-mongoose does not currently support migrate=alter')
+  }
+
+  /**
+   * Do not perform any migrations.
+   */
+  none () {
   }
 }
